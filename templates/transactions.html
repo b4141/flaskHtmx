@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+this is the transactions page
+<hr />
+{% for transaction in transactions %}
+<div>
+  {{ transaction.customer.name }},
+  {{ transaction.amount }}$,
+  {{ transaction.date }}
+</div>
+{% endfor %}
+{% endblock %}

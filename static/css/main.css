@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.content-wrapper {
+  padding-top: 60px;
+}
+
+.active {
+  background-color: #04AA6D;
+}

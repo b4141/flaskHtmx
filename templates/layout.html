@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% if title %} {{ title }} {% else %} testwebiste {% endif %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/navbar.css') }}" />
+</head>
+
+<body>
+
+  {% include "navbar.html" %}
+
+  <div class="content-wrapper">
+    {% block content %}{% endblock %}
+  </div>
+
+</body>
+
+</html>
