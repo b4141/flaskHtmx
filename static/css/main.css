@@ -1,12 +1,15 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 .content-wrapper {
   padding-top: 60px;
-}
-
-.active {
-  background-color: #04AA6D;
 }

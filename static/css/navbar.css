@@ -1,26 +1,30 @@
-.nav-bar ul {
+.nav-bar .nav-bar-items-container {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: var(--bg-color);
   position: fixed;
   top: 0;
   width: 100%;
 }
 
-.nav-bar li {
+.nav-bar .nav-bar-item {
   float: left;
 }
 
-.nav-bar li a {
+.nav-bar .nav-bar-item .nav-bar-link {
   display: block;
-  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
-.nav-bar li a:hover:not(.active) {
-  background-color: #111;
+.nav-bar .nav-bar-item .nav-bar-link:not(.nav-bar-link-active) {
+  color: var(--text-color);
+}
+
+.nav-bar-link-active {
+  background-color: var(--main-color);
+  color: var(--bg-color);
 }
