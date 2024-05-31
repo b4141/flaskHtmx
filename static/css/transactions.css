@@ -1,0 +1,28 @@
+.transactions-table {
+  margin-top: 2em;
+  display: grid;
+  width: 100%;
+  max-width: 800px;
+}
+
+.transactions-row-main {
+  padding: 1em 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--text-color);
+}
+
+.transactions-row-main .transactions-col {
+  font-weight: bold;
+}
+
+
+.transactions-row {
+  padding: 1em 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid;
+  border-bottom: 1px solid var(--sub-color);
+}
+
+.transactions-col {}

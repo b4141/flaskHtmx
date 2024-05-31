@@ -20,6 +20,10 @@
   text-decoration: none;
 }
 
+.nav-bar .nav-bar-item:hover {
+  background-color: var(--sub-color);
+}
+
 .nav-bar .nav-bar-item .nav-bar-link:not(.nav-bar-link-active) {
   color: var(--text-color);
 }

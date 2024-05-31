@@ -1,4 +1,4 @@
-from flask import Flask, url_for, render_template, redirect
+from flask import Flask, url_for, render_template, redirect, request
 from random import randint
 import datetime
 
@@ -38,10 +38,11 @@ def index():
     print(transactions[0].customer.name)
     return render_template("index.html", title="index")
 
-@app.route("/transactions")
+@app.route("/transactions", methods=['GET', 'POST'])
 def transactionsRoute():
-    print(transactions[0].customer.name)
-    return render_template("transactions.html", title="transactions", transactions=transactions)
+    if request.method == 'POST':
+        return render_template("transactionsRoute/transactionsTable.html", transactions=transactions[:10])
+    return render_template("transactionsRoute/transactions.html", title="transactions", transactions=transactions)
 
 if __name__ == "__main__":
     app.run(debug=True)

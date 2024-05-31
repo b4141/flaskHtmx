@@ -1,0 +1,16 @@
+<div class="transactions-table" id="transactions-table">
+  <div class="transactions-row-main">
+    <div hx-post="/transactions" hx-swap="outerHTML" hx-target="#transactions-table"
+      class="transactions-col simple-button">Name <i class='text-arrow bx bxs-down-arrow'></i></div>
+    <div class="transactions-col simple-button">Amount <i class='text-arrow bx bxs-down-arrow'></i></div>
+    <div class="transactions-col simple-button">Date <i class='text-arrow bx bxs-down-arrow'></i></div>
+  </div>
+
+  {% for transaction in transactions %}
+  <div class="transactions-row">
+    <div class="transactions-col">{{ transaction.customer.name }}</div>
+    <div class="transactions-col">{{ transaction.amount }}$</div>
+    <div class="transactions-col">{{ transaction.date }}</div>
+  </div>
+  {% endfor %}
+</div>

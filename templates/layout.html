@@ -3,9 +3,11 @@
 
 <head>
   <title>{% if title %} {{ title }} {% else %} testwebiste {% endif %}</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/darkTheme.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/navbar.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/transactions.css') }}" />
 </head>
 
 <body>
@@ -16,6 +18,7 @@
     {% block content %}{% endblock %}
   </div>
 
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
 </body>
 
 </html>

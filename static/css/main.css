@@ -10,6 +10,35 @@ a {
   text-decoration: none;
 }
 
+hr {
+  height: 1px;
+  border: none;
+}
+
+.hr-thick {
+  height: 10px;
+  border: none;
+  border-top: 1px solid var(--text-color);
+}
+
+.hr-light {
+  height: 10px;
+  border: none;
+  border-top: 1px solid var(--sub-color);
+}
+
+
 .content-wrapper {
   padding-top: 60px;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.text-arrow {
+  font-size: .5em;
+}
+
+.simple-button {
+  cursor: pointer;
 }
