@@ -26,3 +26,8 @@
 }
 
 .transactions-col {}
+
+.transactions-col div {
+  width: fit-content;
+  block-size: fit-content;
+}

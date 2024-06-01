@@ -1,4 +1,5 @@
 from flask import Flask, url_for, render_template, redirect, request
+import json
 from random import randint
 import datetime
 
@@ -50,7 +51,7 @@ transactions = []
 def random_date(start, end):
     return datetime.date(randint(start, end), randint(1, 12), randint(1, 28))
 
-for i in range(100):
+for i in range(len(customers)):
     transactions.append({"customer": customers[randint(0, len(customers)-1)], "amount": randint(20, 50),"date": random_date(2019, 2024)})
 
 @app.route("/")
@@ -62,9 +63,20 @@ def index():
 def transactionsRoute():
     if request.method == 'POST':
         sort_by = request.form.get('sort_by')
-        print("*****", sort_by)
-        return render_template("transactionsRoute/transactionsTable.jinja", transactions=transactions[:10], sortedBy={"value":"name", "ascending":True})
-    return render_template("transactionsRoute/transactions.jinja", title="transactions", transactions=transactions, sortedBy={"value": None})
+        ascending = json.loads(request.form.get('ascending'))
+        reverse_sort = True
+        if ascending == True or ascending == False:
+            reverse_sort = ascending
+        if sort_by == "name":
+            sorted_transactions = sorted(transactions, key=lambda x: x['customer']['name'], reverse=reverse_sort)
+            return render_template("transactionsRoute/transactionsTable.jinja", transactions=sorted_transactions, sortedBy={"value":sort_by, "ascending":ascending})
+        elif sort_by == "amount":
+            sorted_transactions = sorted(transactions, key=lambda x: x["amount"], reverse=reverse_sort)
+            return render_template("transactionsRoute/transactionsTable.jinja", transactions=sorted_transactions, sortedBy={"value":sort_by, "ascending":ascending})
+        elif sort_by == "date":
+            sorted_transactions = sorted(transactions, key=lambda x: x['date'], reverse=reverse_sort)
+            return render_template("transactionsRoute/transactionsTable.jinja", transactions=sorted_transactions, sortedBy={"value":sort_by, "ascending":ascending})
+    return render_template("transactionsRoute/transactions.jinja", title="transactions", transactions=transactions, sortedBy={"value": None, "ascending":True})
 
 if __name__ == "__main__":
     app.run(debug=True)

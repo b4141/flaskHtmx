@@ -2,45 +2,30 @@
   {% with args={'buttonName': 'Name', 'postValue': 'name', 'ascending':sortedBy.ascending } %}
     {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
   {% endwith %}
-  {% with args={'buttonName': 'Amount', 'postValue': 'amount', 'ascending':None } %}
-    {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
-  {% endwith %}
-  {% with args={'buttonName': 'Date', 'postValue': 'date', 'ascending':None } %}
-    {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
-  {% endwith %}
-
-{% elif sortedBy.value == "amount" %}
-  {% with args={'buttonName': 'Name', 'postValue': 'name', 'ascending':None } %}
-    {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
-  {% endwith %}
-  {% with args={'buttonName': 'Amount', 'postValue': 'amount', 'ascending':sortedBy.ascending } %}
-    {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
-  {% endwith %}
-  {% with args={'buttonName': 'Date', 'postValue': 'date', 'ascending':None } %}
-    {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
-  {% endwith %}
-
-{% elif sortedBy.value == "date" %}
-  {% with args={'buttonName': 'Name', 'postValue': 'name', 'ascending':None } %}
-    {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
-  {% endwith %}
-  {% with args={'buttonName': 'Amount', 'postValue': 'amount', 'ascending':None } %}
-    {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
-  {% endwith %}
-  {% with args={'buttonName': 'Date', 'postValue': 'date', 'ascending':sortedBy.ascending } %}
-    {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
-  {% endwith %}
-
 {% else %}
   {% with args={'buttonName': 'Name', 'postValue': 'name', 'ascending':None } %}
     {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
   {% endwith %}
+{% endif %}
+
+{% if sortedBy.value == "amount" %}
+  {% with args={'buttonName': 'Amount', 'postValue': 'amount', 'ascending':sortedBy.ascending } %}
+    {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
+  {% endwith %}
+{% else %}
   {% with args={'buttonName': 'Amount', 'postValue': 'amount', 'ascending':None } %}
     {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
   {% endwith %}
+{% endif %}
+
+
+{% if sortedBy.value == "date" %}
+  {% with args={'buttonName': 'Date', 'postValue': 'date', 'ascending':sortedBy.ascending } %}
+    {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
+  {% endwith %}
+{% else %}
   {% with args={'buttonName': 'Date', 'postValue': 'date', 'ascending':None } %}
     {% include "transactionsRoute/transactionsTableHeaderButton.jinja" %}
   {% endwith %}
-
 {% endif %}
 

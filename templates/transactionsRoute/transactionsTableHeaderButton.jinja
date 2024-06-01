@@ -1,8 +1,17 @@
-<div hx-post="/transactions" hx-swap="outerHTML" hx-target="#transactions-table" hx-vals='{"sort_by": "{{ args.postValue }}"}' class="transactions-col simple-button">
-  {{ args.buttonName }}
+<div class="transactions-col">
 {% if args.ascending == True %}
-    <i class='text-arrow bx bxs-down-arrow'></i>
+    <div hx-post="/transactions" hx-swap="outerHTML" hx-target="#transactions-table" hx-vals='{"sort_by": "{{ args.postValue }}", "ascending": false}' class="simple-button">
+        {{ args.buttonName }}
+        <i class='text-arrow bx bxs-down-arrow'></i>
+    </div>
 {% elif args.ascending == False %}
-    <i class='text-arrow bx bxs-up-arrow'></i>
+    <div hx-post="/transactions" hx-swap="outerHTML" hx-target="#transactions-table" hx-vals='{"sort_by": "{{ args.postValue }}", "ascending": true}' class="simple-button">
+        {{ args.buttonName }}
+        <i class='text-arrow bx bxs-up-arrow'></i>
+    </div>
+{% else %}
+    <div hx-post="/transactions" hx-swap="outerHTML" hx-target="#transactions-table" hx-vals='{"sort_by": "{{ args.postValue }}", "ascending": true}' class="simple-button">
+      {{ args.buttonName }}
+    </div>
 {% endif %}
 </div>
