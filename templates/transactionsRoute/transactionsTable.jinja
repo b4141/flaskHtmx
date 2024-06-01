@@ -1,9 +1,7 @@
 <div class="transactions-table" id="transactions-table">
+
   <div class="transactions-row-main">
-    <div hx-post="/transactions" hx-swap="outerHTML" hx-target="#transactions-table"
-      class="transactions-col simple-button">Name <i class='text-arrow bx bxs-down-arrow'></i></div>
-    <div class="transactions-col simple-button">Amount <i class='text-arrow bx bxs-down-arrow'></i></div>
-    <div class="transactions-col simple-button">Date <i class='text-arrow bx bxs-down-arrow'></i></div>
+    {% include "/transactionsRoute/transactionsTableHeader.jinja" %}
   </div>
 
   {% for transaction in transactions %}

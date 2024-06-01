@@ -1,0 +1,8 @@
+<div hx-post="/transactions" hx-swap="outerHTML" hx-target="#transactions-table" hx-vals='{"sort_by": "{{ args.postValue }}"}' class="transactions-col simple-button">
+  {{ args.buttonName }}
+{% if args.ascending == True %}
+    <i class='text-arrow bx bxs-down-arrow'></i>
+{% elif args.ascending == False %}
+    <i class='text-arrow bx bxs-up-arrow'></i>
+{% endif %}
+</div>
