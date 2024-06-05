@@ -6,6 +6,7 @@
 }
 
 .tasks-table {
+  background-color: var(--bg-color);
   width: 700px;
   border: 1px solid var(--sub-color);
   padding: 1em;
@@ -14,14 +15,13 @@
   gap: 2em;
 }
 
-/* tasks table header ------------------------------------------------*/
+/* tasks table header --------------------------------------------------*/
 .tasks-table-header {
   font-size: var(--title-font-size);
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   color: var(--text-color);
-  // background: orange;
 }
 
 .tasks-table-header-title {
@@ -54,6 +54,9 @@
 .tasks-table-calendar {
   display: grid;
   grid-template-columns: 1fr 20fr 1fr;
+  padding: .5em 1em;
+  border-radius: var(--border-radius-small);
+  outline: 1px solid var(--sub-color);
 }
 
 .tasks-table-calendar-division {
@@ -86,4 +89,55 @@
 
 .tasks-table-calendar-carousel-button:active {
   color: var(--sub-color);
+}
+
+
+/* tasks table day button ----------------------------------------------*/
+
+.tasks-table-day-button {
+  background-color: var(--bg-color);
+  display: grid;
+  place-items: center;
+  gap: .5em;
+  min-height: 3.9em;
+  min-width: 2em;
+  padding: .5em;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.tasks-table-day-button.active {
+  background-color: var(--main-color);
+}
+
+.tasks-table-day-button.active .tasks-table-day-button-day {
+  color: var(--bg-color);
+}
+
+.tasks-table-day-button:hover {
+  background-color: var(--sub-color);
+}
+
+.tasks-table-day-button:hover .tasks-table-day-button-day {
+  color: var(--bg-color);
+}
+
+
+.tasks-table-day-button-number {
+  display: grid;
+  place-items: center;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 4px;
+  border-radius: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-weight: bold;
+  text-align: center;
+}
+
+.tasks-table-day-button-day {
+  display: grid;
+  place-items: center;
+  color: var(--text-color);
 }

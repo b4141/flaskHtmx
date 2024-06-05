@@ -9,7 +9,7 @@
   {% for week in days %}
     <div division="{{ loop.index }}" id="calendar-division-{{ loop.index }}" class="tasks-table-calendar-division {% if loop.index == selected_week %}active{% endif %}">
         {% for dayNumber, dayName in week %}
-          {{ taskDayButton(dayNumber, dayName) }}
+          {{ taskDayButton(dayNumber, dayName, dayNumber == date[-2:]) }}
         {% endfor %}
       </div>
   {% endfor %}
