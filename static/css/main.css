@@ -1,3 +1,9 @@
+:root {
+  --border-radius-small: .5rem;
+  --border-radius-big: 5px;
+  --title-font-size: 1.5em;
+}
+
 body {
   margin: 0;
   padding: 0;

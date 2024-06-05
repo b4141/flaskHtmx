@@ -1,63 +1,36 @@
 from flask import Flask, url_for, render_template, redirect, request
+from utils import *
+from data import *
 import json
-from random import randint
 import datetime
+import calendar
 
 app = Flask(__name__)
+generateData(customers, transactions)
 
-
-customers = [
-    {"name": "Delilah Osborne"},
-    {"name": "Augustus Wilkins"},
-    {"name": "Amalia Harris"},
-    {"name": "Samuel Herring"},
-    {"name": "Denver Rasmussen"},
-    {"name": "Will Huynh"},
-    {"name": "Oaklee Fitzgerald"},
-    {"name": "Peyton Bates"},
-    {"name": "Madilyn Jimenez"},
-    {"name": "Silas Burgess"},
-    {"name": "Emory Wade"},
-    {"name": "Jake Savage"},
-    {"name": "Louise Lynch"},
-    {"name": "Zane Saunders"},
-    {"name": "Meadow Meyers"},
-    {"name": "Julien Pacheco"},
-    {"name": "Paris Gordon"},
-    {"name": "Karter Wolfe"},
-    {"name": "Hallie Magana"},
-    {"name": "Rey Daniel"},
-    {"name": "Joy Holt"},
-    {"name": "Niko Allison"},
-    {"name": "Chelsea Flynn"},
-    {"name": "Kannon Parrish"},
-    {"name": "Tiana Tyler"},
-    {"name": "Emmitt Hansen"},
-    {"name": "Hope Hammond"},
-    {"name": "Francis Jenkins"},
-    {"name": "Rylee Caldwell"},
-    {"name": "Rylan Barr"},
-    {"name": "Noemi Berger"},
-    {"name": "Byron Trujillo"},
-    {"name": "Danielle Best"},
-    {"name": "Harlem Sosa"},
-    {"name": "Cassandra Long"},
-    {"name": "Jace Parrish"},
-    {"name": "Tiana Evans"}
-]
-
-transactions = []
-
-def random_date(start, end):
-    return datetime.date(randint(start, end), randint(1, 12), randint(1, 28))
-
-for i in range(len(customers)):
-    transactions.append({"customer": customers[randint(0, len(customers)-1)], "amount": randint(20, 50),"date": random_date(2019, 2024)})
 
 @app.route("/")
 def index():
-    # print(transactions[0].customer.name)
     return render_template("index.jinja", title="index")
+
+
+@app.route("/tasks")
+def tasks():
+    selected_date = datetime.datetime.today()
+    days_in_month = calendar.monthrange(selected_date.year, selected_date.month)[1]
+    days = []
+    selected_week = selected_date.day // 8 if selected_date.day % 8 != 0 else selected_date.day / 8 - 1
+    print(selected_week)
+    for i in range(1, days_in_month+1, 8):
+        week = []
+        for j in range(i, min(i+8, days_in_month+1)):
+            dayName = datetime.date(selected_date.year, selected_date.month, j).strftime("%a")
+            dayNumber = f"0{j}" if j < 10 else str(j)
+            week.append((dayNumber, dayName))
+        days.append(week)
+    selected_date = selected_date.strftime("%Y-%m-%d")
+    return render_template("tasksRoute/tasks.jinja", title="Tasks", date=selected_date, days=days, selected_week=selected_week+1)
+
 
 @app.route("/transactions", methods=['GET', 'POST'])
 def transactionsRoute():

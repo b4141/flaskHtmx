@@ -1,0 +1,23 @@
+{% from "/tasksRoute/tasksTasksTableDayButton.jinja" import taskDayButton %}
+
+<div class="tasks-table-calendar">
+
+  <button class="tasks-table-calendar-carousel-button" id="calendar-carousel-prev-button" onclick="prevCarouselCalendarWeek()">
+    <i class='bx bxs-left-arrow'></i>
+  </button>
+
+  {% for week in days %}
+    <div division="{{ loop.index }}" id="calendar-division-{{ loop.index }}" class="tasks-table-calendar-division {% if loop.index == selected_week %}active{% endif %}">
+        {% for dayNumber, dayName in week %}
+          {{ taskDayButton(dayNumber, dayName) }}
+        {% endfor %}
+      </div>
+  {% endfor %}
+
+  <button class="tasks-table-calendar-carousel-button" id="calendar-carousel-next-button" onclick="nextCarouselCalendarWeek()">
+    <i class='bx bxs-right-arrow'></i>
+  </button>
+
+</div>
+
+

@@ -1,0 +1,89 @@
+.task {
+  background-color: var(--main-color);
+  width: 200px;
+  height: 80px;
+  color: var(--bg-color);
+}
+
+.tasks-table {
+  width: 700px;
+  border: 1px solid var(--sub-color);
+  padding: 1em;
+  border-radius: var(--border-radius-small);
+  display: grid;
+  gap: 2em;
+}
+
+/* tasks table header ------------------------------------------------*/
+.tasks-table-header {
+  font-size: var(--title-font-size);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  color: var(--text-color);
+  // background: orange;
+}
+
+.tasks-table-header-title {
+  font-weight: bold;
+}
+
+.tasks-table-header-date-button {
+  display: grid;
+  place-items: center;
+  justify-items: end;
+}
+
+.tasks-table-header-date-button input[type="date"] {
+  background-color: var(--sub-alt-color);
+  border: none;
+  outline: none;
+  padding: .5em 1em;
+  border-radius: var(--border-radius-small);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.tasks-table-header-date-button input[type="date"]:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+/* tasks table calendar ------------------------------------------------*/
+
+.tasks-table-calendar {
+  display: grid;
+  grid-template-columns: 1fr 20fr 1fr;
+}
+
+.tasks-table-calendar-division {
+  display: none;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.tasks-table-calendar-division.active {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.tasks-table-calendar-carousel-button {
+  font-size: 1em;
+  background-color: var(--bg-color);
+  border: none;
+  height: 100%;
+  outline: none;
+  color: var(--sub-color);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.tasks-table-calendar-carousel-button:hover {
+  color: var(--text-color);
+}
+
+.tasks-table-calendar-carousel-button:active {
+  color: var(--sub-color);
+}
