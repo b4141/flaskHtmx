@@ -1,0 +1,8 @@
+{% from "/tasksRoute/tasksTasksTableTimeRow.jinja" import taskTimeRow %}
+
+<div class="tasks-table-time-container">
+  {% for time in args.working_times %}
+    {{ taskTimeRow(time) }}
+  {% endfor %}
+</div>
+

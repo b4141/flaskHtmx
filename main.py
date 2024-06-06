@@ -29,7 +29,24 @@ def tasks():
             week.append((dayNumber, dayName))
         days.append(week)
     selected_date = selected_date.strftime("%Y-%m-%d")
-    return render_template("tasksRoute/tasks.jinja", title="Tasks", date=selected_date, days=days, selected_week=selected_week+1)
+    working_times = []
+    for i in range(9):
+        noonTime = "AM"
+        time = i+8
+        if time >= 12:
+            noonTime = "PM"
+        if time < 10:
+            time = f"0{time}"
+        working_times.append(f"{time}:00 {noonTime}")
+        working_times.append(f"{time}:20 {noonTime}")
+        working_times.append(f"{time}:40 {noonTime}")
+    args = {
+        "date": selected_date,
+        "days": days,
+        "selected_week": selected_week+1,
+        "working_times": working_times
+    }
+    return render_template("tasksRoute/tasks.jinja", title="Tasks", args=args)
 
 
 @app.route("/transactions", methods=['GET', 'POST'])

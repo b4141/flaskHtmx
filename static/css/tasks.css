@@ -1,22 +1,18 @@
-.task {
-  background-color: var(--main-color);
-  width: 200px;
-  height: 80px;
-  color: var(--bg-color);
-}
-
 .tasks-table {
   background-color: var(--bg-color);
   width: 700px;
+  /*
+  */
   border: 1px solid var(--sub-color);
   padding: 1em;
-  border-radius: var(--border-radius-small);
+  border-radius: var(--border-radius-big);
   display: grid;
   gap: 2em;
 }
 
 /* tasks table header --------------------------------------------------*/
 .tasks-table-header {
+  margin-top: .5em;
   font-size: var(--title-font-size);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -140,4 +136,42 @@
   display: grid;
   place-items: center;
   color: var(--text-color);
+}
+
+/* tasks table time container ------------------------------------------*/
+
+.tasks-table-time-container {
+  background-color: var(--bg-color);
+}
+
+.tasks-table-time-row {
+  height: 7em;
+  border-top: 1px solid var(--sub-color);
+  padding-top: .4em;
+  display: grid;
+  grid-template-columns: min-content auto;
+}
+
+.tasks-table-time-row-time {
+  width: 5em;
+  padding-right: .5em;
+  color: var(--text-color);
+}
+
+.tasks-table-time-row-task-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+}
+
+
+/* tasks table task ----------------------------------------------------*/
+
+.task {
+  background-color: var(--text-color);
+  width: 12.5em;
+  height: 5em;
+  color: var(--bg-color);
 }

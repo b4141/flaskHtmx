@@ -1,0 +1,12 @@
+{% macro taskTimeRow(time) -%}
+  <div class="tasks-table-time-row noselect">
+    <div class="tasks-table-time-row-time">
+      {{ time }}
+    </div>
+    <div class="tasks-table-time-row-task-holder">
+      {% include "/tasksRoute/tasksTask.jinja" %}
+      {% include "/tasksRoute/tasksTask.jinja" %}
+    </div>
+  </div>
+{%- endmacro%}
+

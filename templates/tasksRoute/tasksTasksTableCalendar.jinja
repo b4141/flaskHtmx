@@ -6,10 +6,10 @@
     <i class='bx bxs-left-arrow'></i>
   </button>
 
-  {% for week in days %}
-    <div division="{{ loop.index }}" id="calendar-division-{{ loop.index }}" class="tasks-table-calendar-division {% if loop.index == selected_week %}active{% endif %}">
+  {% for week in args.days %}
+    <div division="{{ loop.index }}" id="calendar-division-{{ loop.index }}" class="tasks-table-calendar-division {% if loop.index == args.selected_week %}active{% endif %}">
         {% for dayNumber, dayName in week %}
-          {{ taskDayButton(dayNumber, dayName, dayNumber == date[-2:]) }}
+          {{ taskDayButton(dayNumber, dayName, dayNumber == args.date[-2:]) }}
         {% endfor %}
       </div>
   {% endfor %}
