@@ -1,5 +1,5 @@
 {% macro taskDayButton(dayNumber, dayName, active) -%}
-  <div class="tasks-table-day-button {% if active %}active{% endif %}">
+  <div class="tasks-table-day-button {% if active %}active{% endif %} noselect">
     <div class="tasks-table-day-button-number"> {{ dayNumber }} </div>
     <div class="tasks-table-day-button-day"> {{ dayName }} </div>
   </div>
