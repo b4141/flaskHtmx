@@ -1,0 +1,101 @@
+{% extends "layout.jinja" %}
+{% block content %}
+
+
+{% include "./test2_form.html" %}
+
+<!--
+<script>
+  htmx.onLoad(function (content) {
+    console.log("loaded")
+    var sortables = content.querySelectorAll(".sortable");
+    for (var i = 0; i < sortables.length; i++) {
+      var sortable = sortables[i];
+      // var sortable = document.getElementById("sortable");
+      var sortableInstance = new Sortable(sortable, {
+        animation: 150,
+        ghostClass: 'blue-background-class',
+        group: "taskManager",
+
+        // Make the `.htmx-indicator` unsortable
+        filter: ".htmx-indicator",
+        onMove: function (evt) {
+          // console.log(evt.related.className.indexOf('htmx-indicator') === -1);
+          console.log(evt);
+          return evt.related.className.indexOf('htmx-indicator') === -1;
+        },
+
+        // Disable sorting on the `end` event
+        onEnd: function (evt) {
+          console.log(evt);
+          // console.log("disabled");
+          // this.option("disabled", true);
+        }
+      });
+
+      // Re-enable sorting on the `htmx:afterSwap` event
+      sortable.addEventListener("htmx:afterSwap", function () {
+        console.log("done");
+        // console.log(sortableInstance);
+        // sortableInstance.option("disabled", false);
+      });
+    }
+  })
+</script>
+-->
+
+
+<script>
+  htmx.onLoad(function (content) {
+    console.log("loaded");
+    var sortables = content.querySelectorAll(".sortable");
+
+    for (var i = 0; i < sortables.length; i++) {
+      var sortable = sortables[i];
+      var sortableInstance = new Sortable(sortable, {
+        animation: 150,
+        ghostClass: 'blue-background-class',
+        group: "taskManager",
+        filter: ".htmx-indicator",
+
+        onMove: function (evt) {
+          return evt.related.className.indexOf('htmx-indicator') === -1;
+        },
+
+        onEnd: function (evt) {
+          // Sorting has ended
+          this.option("disabled", true);
+        },
+
+        onAdd: function (evt) {
+          // Item added to a new list
+          updateInputNames(evt.to);
+          console.log("upateInputNames onAdd", evt.from, evt.to);
+        },
+
+        onUpdate: function (evt) {
+          // Item updated within the same list
+          updateInputNames(evt.from);
+          console.log("upateInputNames onUpdate", evt.from);
+        }
+      });
+
+      // Re-enable sorting on the `htmx:afterSwap` event
+      sortable.addEventListener("htmx:afterSwap", function () {
+        console.log("done");
+        sortableInstance.option("disabled", false);
+      });
+    }
+
+    function updateInputNames(container) {
+      var timeSlot = container.closest('.time-slot').getAttribute('data-time');
+      var elements = container.querySelectorAll('.sortable-element input');
+
+      elements.forEach(function (input) {
+        input.setAttribute('name', timeSlot);
+      });
+    }
+  });
+</script>
+
+{% endblock content %}

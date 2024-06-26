@@ -3,12 +3,15 @@
 
 <head>
   <title>{% if title %} {{ title }} {% else %} testwebiste {% endif %}</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/imgs/coffee-bean.png') }}">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/darkTheme.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/navbar.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/transactions.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/tasks.css') }}" />
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js" integrity="sha512-TelkP3PCMJv+viMWynjKcvLsQzx6dJHvIGhfqzFtZKgAjKM1YPqcwzzDEoTc/BHjf43PcPzTQOjuTr4YdE8lNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -19,7 +22,6 @@
     {% block content %}{% endblock %}
   </div>
 
-  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
 </body>
 
 </html>

@@ -1,0 +1,95 @@
+{% extends "layout.jinja" %}
+{% block content %}
+
+
+
+<!--
+<form class="sortable-container" hx-post="/test2" hx-trigger="end" hx-swap="outerHTML">
+->
+<form class="sortable-container">
+  <div class="htmx-indicator">updating</div>
+
+  {% for task in tasks %}
+  <div class="time-slot" data-time="{{ time }}">
+    <span>{{ tasks[task]["time"] }}</span>
+    <div class="sortable">
+      <div class="sortable-element noselect">
+        <input type="hidden" name="{{ tasks[task]['time'] }}" value="{{ task }}" />
+        <span>{{ tasks[task]['costumer']['name'] }}</span>
+        <span>{{ tasks[task]['host']['name'] }}</span>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</form>
+-->
+
+<div class="htmx-indicator">updating</div>
+<form class="sortable-container">
+
+  <div class="sortable-column-container sortable-time-container">
+    {% for time in args["working_times"] %}
+    <div>{{ time }}</div>
+    {% endfor %}
+  </div>
+
+  <div class="sortable-column-container sortable-task-container sortable">
+    {% for task in args["tasks"] %}
+    {% if args["tasks"][task] == None %}
+    <div class="sortable-element-empty noselect">
+      None
+    </div>
+    {% else %}
+    <div class="sortable-element noselect">
+      <span>{{ task }}</span>
+      <span>{{ args["tasks"][task]["costumer"]["name"] }}</span>
+      <span>{{ args["tasks"][task]["host"]["name"] }}</span>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+</form>
+
+
+<script>
+  htmx.onLoad(function (content) {
+    console.log("loaded")
+    var sortables = content.querySelectorAll(".sortable");
+    for (var i = 0; i < sortables.length; i++) {
+      var sortable = sortables[i];
+      // var sortable = document.getElementById("sortable");
+      var sortableInstance = new Sortable(sortable, {
+        // animation: 150,
+        ghostClass: 'blue-background-class',
+        group: "taskManager",
+        swap: true,
+        swapClass: 'sortable-swap-highlight', // The class applied to the swap item
+
+
+        // Make the `.htmx-indicator` unsortable
+        filter: ".htmx-indicator",
+        filter: ".sortable-element-empty",
+        onMove: function (evt) {
+          // console.log(evt.related)
+          return evt.related.className.indexOf('htmx-indicator') === -1;
+        },
+
+        // Disable sorting on the `end` event
+        onEnd: function (evt) {
+          // console.log("disabled");
+          // this.option("disabled", true);
+        }
+      });
+
+      // Re-enable sorting on the `htmx:afterSwap` event
+      sortable.addEventListener("htmx:afterSwap", function () {
+        console.log("done");
+        // console.log(sortableInstance);
+        // sortableInstance.option("disabled", false);
+      });
+    }
+  })
+</script>
+{% endblock content %}

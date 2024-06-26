@@ -63,3 +63,109 @@ hr {
   /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
   user-select: none;
 }
+
+.my-htmx-indicator {
+  /*
+  display: none;
+  */
+  width: 100%;
+  height: 100%;
+  color: orange;
+  font-size: 3em;
+}
+
+.htmx-request .my-htmx-indicator {
+  display: block;
+  opacity: 0.7;
+}
+
+.htmx-request.my-htmx-indicator {
+  display: block;
+  opacity: 0.7;
+}
+
+
+
+
+/* test 2*/
+
+/*
+.sortable-container {
+  margin-top: 5em;
+  display: grid;
+  width: 80%;
+  gap: 10px;
+}
+
+.sortable {
+  background: black;
+  border: 1px solid white;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  padding: 1em;
+  gap: 1em;
+}
+
+.sortable-element {
+  background: coral;
+  color: black;
+  cursor: grab;
+  display: grid;
+  width: 200px;
+  align-content: space-evenly;
+}
+*/
+
+
+/* test 3*/
+
+.sortable-container {
+  margin-top: 5em;
+  display: grid;
+  grid-template-columns: 1fr 10fr 10fr;
+  grid-template-columns: 1fr 10fr;
+  width: 80%;
+  gap: 10px;
+}
+
+.sortable-element {
+  background: coral;
+  color: black;
+  cursor: grab;
+  display: grid;
+  width: 90%;
+  height: 100px;
+  align-content: space-evenly;
+}
+
+.sortable-element-empty {
+  background: black;
+  color: white;
+  color: black;
+  width: 90%;
+  height: 100px;
+}
+
+
+.sortable-column-container {
+  padding: 0.5em;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5em;
+}
+
+.sortable-time-container {
+  background: orange;
+  color: black;
+
+}
+
+.sortable-task-container {
+  background: black;
+  color: white;
+}
+
+.sortable-swap-highlight {
+  background-color: #f0f0f0;
+}

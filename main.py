@@ -4,6 +4,7 @@ from data import *
 import json
 import datetime
 import calendar
+import time
 
 app = Flask(__name__)
 generateData(customers, transactions)
@@ -67,6 +68,49 @@ def transactionsRoute():
             sorted_transactions = sorted(transactions, key=lambda x: x['date'], reverse=reverse_sort)
             return render_template("transactionsRoute/transactionsTable.jinja", transactions=sorted_transactions, sortedBy={"value":sort_by, "ascending":ascending})
     return render_template("transactionsRoute/transactions.jinja", title="transactions", transactions=transactions, sortedBy={"value": None, "ascending":True})
+
+
+@app.route("/test", methods=['GET', 'POST'])
+def test():
+    date = datetime.datetime.strptime('2024-06-24', '%Y-%m-%d').date()
+    args = {
+        "working_times": getWorkingTimes(),
+        "tasks": getTasksByDate(date),
+    }
+    return render_template("test.html", args=args)
+
+
+@app.route("/test2", methods=['GET', 'POST'])
+def test2():
+    if request.method == 'POST':
+        print(request.form.keys())
+        # for key in request.form.keys():
+        #     if times[key]:
+        #         values = request.form.getlist(key)
+        #         for value in values:
+        #             if not value in times[key]:
+        #                 print("ok")
+        #                 times[key][value] = {"html_value": "hello 44"}
+                        
+        #             print(value)
+        #     else:
+        #         print("error: new time")
+        # time.sleep(0.5)
+        # return render_template("test2_form.html", times=times)
+        # return "hello"
+        # return render_template("test2_form.html", tasks=all_tasks)
+        return
+    return render_template("test2.html", tasks=all_tasks)
+
+
+@app.route("/test3", methods=['GET', 'POST'])
+def test3():
+    date = datetime.datetime.strptime('2024-06-24', '%Y-%m-%d').date()
+    args = {
+        "working_times": getWorkingTimes(),
+        "tasks": getTasksByDate(date),
+    }
+    return render_template("test3.html", args=args)
 
 if __name__ == "__main__":
     app.run(debug=True)

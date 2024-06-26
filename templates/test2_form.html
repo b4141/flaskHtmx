@@ -1,0 +1,71 @@
+<!--
+<div class="sortable-container" hx-post="/test2" hx-trigger="end">
+<div class="sortable-container">
+
+  <div class="sortable"><input type="hidden" name="time" value="time 2" />
+    <div class="sortable-element noselect"><input type="hidden" name="item" value="4" />hello 4</div>
+  </div>
+  <div class="sortable"><input type="hidden" name="time" value="time 3" />
+    <div class="sortable-element noselect"><input type="hidden" name="item" value="5" />hello 5</div>
+    <div class="sortable-element noselect"><input type="hidden" name="item" value="6" />hello 6</div>
+  </div>
+  <div class="sortable"><input type="hidden" name="time" value="time 4" />
+  </div>
+-->
+
+<!--
+<form class="sortable-container" hx-post="/test2" hx-trigger="end" hx-swap="outerHTML">
+  <div class="htmx-indicator">updating</div>
+
+  {% for time in times %}
+  {{ time }}
+  <div class="sortable">
+    {% for data in times[time] %}
+    <div class="sortable-element noselect">
+      <input type="hidden" name="{{ time }}" value="{{ data['html_value'] }}" />{{ data["data"] }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+
+</form>
+-->
+
+
+<!--
+<form class="sortable-container" hx-post="/test2" hx-trigger="end" hx-swap="outerHTML">
+  <div class="htmx-indicator">updating</div>
+
+  {% for time in times %}
+  <div class="time-slot" data-time="{{ time }}">
+    {{ time }}
+    <div class="sortable">
+      {% for id in times[time] %}
+      <div class="sortable-element noselect">
+        <input type="hidden" name="{{ time }}" value="{{ id }}" />{{ times[time][id]["html_value"] }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+
+</form>
+-->
+
+<form class="sortable-container" hx-post="/test2" hx-trigger="end" hx-swap="outerHTML">
+  <div class="htmx-indicator">updating</div>
+
+  {% for task in tasks %}
+  <div class="time-slot" data-time="{{ time }}">
+    <span>{{ tasks[task]["time"] }}</span>
+    <div class="sortable">
+      <div class="sortable-element noselect">
+        <input type="hidden" name="{{ tasks[task]['time'] }}" value="{{ task }}" />
+        <span>{{ tasks[task]['costumer']['name'] }}</span>
+        <span>{{ tasks[task]['host']['name'] }}</span>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</form>
